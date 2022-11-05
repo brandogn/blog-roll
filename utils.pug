@@ -1,0 +1,76 @@
+//- TEMPLATES:
+
+-
+  const MAIN_CSS_DIR = "/docs/assets/styles/main.css"
+  const HOME_CSS_DIR = "/docs/assets/styles/home.css"
+  const INDEX_DIR = "/docs/index.html"
+  
+//- Utils for document page:
+
+mixin nav()
+    .top
+      .nav-bar
+        .icon
+          a(href= INDEX_DIR) H
+        .push
+        for i in ["I", "II", "III"]
+          .icon 
+            a(href="./p_" + i + "_home.html")= i
+
+mixin docTitle(title)
+  .title
+    .title-wrapper
+      .title-glow
+      span MAIN TITLE
+
+//- Template for home page:
+
+mixin homePage(title, links)
+  doctype html
+  html(lang='en')
+    head
+      meta(charset='UTF-8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+      meta(name='viewport', content='width=device-width, initial-scale=1.0')
+      link(rel="stylesheet", href= MAIN_CSS_DIR)
+      link(rel="stylesheet", href= HOME_CSS_DIR)
+      title= title
+    body
+      .main
+        .home.push
+          .title= title
+          h2 
+            a(href= INDEX_DIR) ..
+          each name, link in links
+            h2 
+              a(href= link)= name
+        .foot
+          a(href='./about.html')  [What is this website?]
+          .push
+          p Note: ".." goes back
+
+//- Template for document page:
+
+mixin docPage(title, content, home, note)
+  doctype html
+  html(lang='en')
+    head
+      meta(charset='UTF-8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+      meta(name='viewport', content='width=device-width, initial-scale=1.0')
+      link(rel="stylesheet", href= MAIN_CSS_DIR)
+      title= title
+    body
+      .main
+        a(name="top")
+        +nav()
+        .content
+          +docTitle(title)
+        .foot
+          a(href='#top') [back to top ↑]
+          | ⠀|⠀
+          a(href='./template_home.html')= `[Proj ${home.name} Home]`
+          .push
+          if note 
+            p= "Note: " + note
+
