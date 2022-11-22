@@ -9,20 +9,52 @@
 //- Utils for document page:
 
 mixin nav()
-    .top
-      .nav-bar
-        .icon
-          a(href= INDEX_DIR) H
-        .push
-        for i in ["I", "II", "III"]
-          .icon 
-            a(href="./p_" + i + "_home.html")= i
+  .top-bar
+    .navbar
+      .menu
+        a(href='#home') H
+      .push
+      .dropdown
+        button.dropbtn= "I"
+        .dropdown-content
+          a(href='#') Link 1
+          a(href='#') Link 2
+          a(href='#') Link 3
+      
+      //-  nav#primary_nav_wrap
+      //-   ul 
+      //-     li 
+      //-       a(href= INDEX_DIR) H
+      //-     for i in ["I", "II", "III"]
+      //-       li= i
+      //-         ul
+      //-           li sub menu 1
+      //-           li submenu 2
+
+      //- .nav-bar
+      //-   .menu
+      //-     a(href= INDEX_DIR) H
+      //-   .push
+      //-   for i in ["I", "II", "III"]
+      //-     .menu
+      //-       ul 
+      //-         li asdfasdf
+      //-         li asfdasdfasd 
+      //-       a(href="./p_" + i + "_home.html")= i
 
 mixin docTitle(title)
   .title
     .title-wrapper
       .title-glow
       span MAIN TITLE
+
+mixin section(title, content)
+  h2= title
+  for pkg in content 
+    if typeof pkg === "object"
+      | !{pkg[0]}
+    else
+      p= pkg
 
 //- Template for home page:
 
@@ -38,11 +70,13 @@ mixin homePage(title, links)
       title= title
     body
       .main
+        +nav()
+
         .home.push
           .title= title
           h2 
             a(href= INDEX_DIR) ..
-          each name, link in links
+          each link, name in links
             h2 
               a(href= link)= name
         .foot
@@ -67,10 +101,13 @@ mixin docPage(title, content, home, note)
         +nav()
         .content
           +docTitle(title)
+          for paragraphs, subtitle in content
+            +section(subtitle, paragraphs)
+        .push
         .foot
           a(href='#top') [back to top ↑]
           | ⠀|⠀
-          a(href='./template_home.html')= `[Proj ${home.name} Home]`
+          a(href= home.link)= `[Proj ${home.name} Home]`
           .push
           if note 
             p= "Note: " + note

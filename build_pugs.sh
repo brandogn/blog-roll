@@ -15,6 +15,7 @@ for i in "I" "II" "III"
 do
     mkdir "Proj_${i}"
     cp $HOME_DIR "Proj_${i}/p_${i}_home.pug"
+    cp $PAGE_DIR "Proj_${i}/p_${i}_page.pug"
 done
 
 
@@ -30,7 +31,7 @@ pug ./ -o ./docs -P
 echo "Remove Directory? [y/n]"
 read rm_input
 
-if [ rm_input == "y"]
+if [ rm_input == "y" ]
 then
     rm -rf pages
 fi
