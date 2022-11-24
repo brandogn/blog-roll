@@ -15,15 +15,15 @@ mixin nav(navInfo)
   .top-bar
     .navbar
       .menu
-        a(href='#home') H
+        a(href='/index.html') H
       .push
       for links, key in navInfo
         .dropdown
           button.dropbtn
-            a(href='#')= key
+            a(href= `/${key}/home.html`)= key
           .dropdown-content
-            for link in links
-              a(href="#")= link
+            for page in links
+              a(href= page.url)= page.name
             //- for link in subLinks 
             //-   a(href= link.url)= link.name
 
@@ -31,7 +31,7 @@ mixin docTitle(title)
   .title
     .title-wrapper
       .title-glow
-      span MAIN TITLE
+      span= title
 
 mixin section(title, content)
   h2= title
@@ -61,9 +61,9 @@ mixin homePage(navInfo, title, links)
           .title= title
           h2 
             a(href= INDEX_DIR) ..
-          each url, name in links
+          each page in links
             h2 
-              a(href= url)= name
+              a(href= page.url)= page.name
         .foot
           a(href='./about.html')  [What is this website?]
           .push

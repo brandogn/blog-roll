@@ -1,45 +1,29 @@
 // LOAD FILES:
 const fs = require("fs");
-const path = require("path")
+const path = require("path");
 const pug = require("pug");
 // PUG TEMPLATE FUNCTIONS:
 const pageTemplate = pug.compileFile("template_page.pug");
 const homeTemplate = pug.compileFile("template_home.pug");
 // FILE DIRECTORY
 const content = require("./content.json");
-const OUT = path.join(__dirname, "docs")
-console.log(OUT);
+const OUT = path.join(__dirname, "docs");
 
-console.log("created compiled funcitons");
+console.log("creating files in: " + OUT);
 
-// object with key as project title, val as array of link objects
-
-function writeFile(path, data) {
-  fs.writeFile(path, data, (err) => {
-    if (err) throw err;
-    console.log("\tFile at " + path + " was saved . . .");
-  });
-}
-
-function makeDir(path) {
-  fs.mkdir(path, (err) => {
-    if (err) throw err;
-    console.log("\tDirectory created at " + path + ". . .");
-  });
-}
-
-function getDirectory() {
+function dirStructure() {
   let buffer = {};
   for (const key in content) {
     dirs = Object.keys(content[key]);
-    buffer[key] = dirs.map((name, folder) => {
-      return { name: name, url: `./${name}` };
+    buffer[key] = dirs.map((name) => {
+      return { name: name, url: path.join("/", key, name + ".html") };
     });
   }
   return buffer;
 }
 
-const globalNav = getDirectory();
+const globalNav = dirStructure();
+console.log(globalNav);
 
 function createHome(title, links) {
   return homeTemplate({
@@ -51,17 +35,47 @@ function createHome(title, links) {
   });
 }
 
+function createPage(title, content, homeLink) {
+  return pageTemplate({
+    data: {
+      navInfo: globalNav,
+      title: title,
+      content: content,
+      home: homeLink,
+    },
+  });
+}
+
 ///
 ///
 ///
 
 function main() {
-  // console.log(content);
+  // Create index:
+  const indexHTML = pug.renderFile("template_index.pug", {
+    data: { navInfo: globalNav },
+  });
+  fs.writeFileSync("./docs/index.html", indexHTML);
+
+  // Create File Structure:
   for (const proj in content) {
-    makeDir("./docs/" + proj);
-    writeFile("./docs/" + proj + "/home.html", "")
+    // Setup project directory
+    const projDir = path.join(OUT, proj);
+    fs.rmSync(projDir, { recursive: true, force: true }, (err) => {});
+    fs.mkdirSync(projDir);
+
+    // Set up home.html page
+    const homeHtml = createHome(`Project ${proj}`, globalNav[proj]);
+    fs.writeFileSync(path.join(projDir, "home.html"), homeHtml);
+
+    // Set up subpages iteratively
+    console.log(content[proj]);
     for (const page in content[proj]) {
-      writeFile("./docs/" + proj + `/${page}.html`, "")
+      const pageHtml = createPage(page, content[proj][page], {
+        name: proj,
+        url: `/${proj}/home.html`,
+      });
+      fs.writeFileSync(path.join(projDir, `/${page}.html`), pageHtml);
     }
   }
 }
@@ -69,15 +83,7 @@ main();
 
 // DEBUG:
 
-// function debug() {
-//   const renderedHTML = pug.renderFile("template_index.pug", {
-//     data: { navInfo: globalNav },
-//   });
-//   // const renderedHTML = createHome("THIS IS A TEST", { name: "#", deasdf: "#" });
-//   // console.log(renderedHTML);
-
-//   writeFile("./docs/index.html", renderedHTML);
-// }
-// debug();
+function debug() {}
+debug();
 
 // pug ./ -wo ./docs -P

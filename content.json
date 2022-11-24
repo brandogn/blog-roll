@@ -1,6 +1,6 @@
 {
   "I": {
-    "discussions": {
+    "Discussions": {
       "section 1": [
         "paragrpha1 of section 1",
         "para2 of !{console.log('asdf')}section 1",
@@ -31,7 +31,7 @@
         "para3 of section 2"
       ]
     },
-    "essay": {
+    "Essay": {
       "section 1 OF ESSAY": [
         "paragrpha1 of section 1",
         "para2 of !{console.log('asdf')}section 1",
