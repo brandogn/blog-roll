@@ -5,6 +5,13 @@
   const MAIN_CSS_DIR = ROOT + "assets/styles/main.css",
     HOME_CSS_DIR = ROOT + "assets/styles/home.css",
     INDEX_DIR = ROOT + "index.html";
+  const contents = {
+    I: ,
+    II:,
+    III:,
+  }
+
+  
   
 //- Utils for document page:
 
@@ -14,33 +21,13 @@ mixin nav()
       .menu
         a(href='#home') H
       .push
-      .dropdown
-        button.dropbtn= "I"
-        .dropdown-content
-          a(href='#') Link 1
-          a(href='#') Link 2
-          a(href='#') Link 3
-      
-      //-  nav#primary_nav_wrap
-      //-   ul 
-      //-     li 
-      //-       a(href= INDEX_DIR) H
-      //-     for i in ["I", "II", "III"]
-      //-       li= i
-      //-         ul
-      //-           li sub menu 1
-      //-           li submenu 2
-
-      //- .nav-bar
-      //-   .menu
-      //-     a(href= INDEX_DIR) H
-      //-   .push
-      //-   for i in ["I", "II", "III"]
-      //-     .menu
-      //-       ul 
-      //-         li asdfasdf
-      //-         li asfdasdfasd 
-      //-       a(href="./p_" + i + "_home.html")= i
+      for subLinks, i in ["I", "II", "III"]
+        .dropdown
+          button.dropbtn
+            a(href='#')= i
+          .dropdown-content
+            for link in subLinks 
+              a(href= link.url)= link.name
 
 mixin docTitle(title)
   .title
@@ -69,8 +56,8 @@ mixin homePage(title, links)
       link(rel="stylesheet", href= HOME_CSS_DIR)
       title= title
     body
+      +nav()
       .main
-        +nav()
 
         .home.push
           .title= title
@@ -96,9 +83,10 @@ mixin docPage(title, content, home, note)
       link(rel="stylesheet", href= MAIN_CSS_DIR)
       title= title
     body
+      +nav()
       .main
+        .navbar-pad
         a(name="top")
-        +nav()
         .content
           +docTitle(title)
           for paragraphs, subtitle in content

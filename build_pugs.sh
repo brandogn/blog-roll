@@ -2,20 +2,29 @@
 
 # Store Templates in vars
 
+
+
 ROOT="$(pwd)"
-HOME_DIR="${ROOT}/templates/template_folder/template_home.pug"
-PAGE_DIR="${ROOT}/templates/template_folder/template_page.pug"
+PUG="${ROOT}/pug"
+HOME_TEMPLATE="${ROOT}/template_home.pug"
+PAGE_TEMPLATE="${ROOT}/template_page.pug"
 
 # Create file structure
 
-echo "Creating structure in ${ROOT}"
-mkdir pages/; cd pages/
+echo "Creating structure in ${ROOT}, making "
+mkdir $PUG
+cp index.pug "${PUG}/index.pug"
+sed -i "s/utils/..\/utils ${PUG}/index.pug"
+cd $PUG
 
 for i in "I" "II" "III"
 do
-    mkdir "Proj_${i}"
-    cp $HOME_DIR "Proj_${i}/p_${i}_home.pug"
-    cp $PAGE_DIR "Proj_${i}/p_${i}_page.pug"
+    PROJ_DIR="Proj_${i}"
+    mkdir $PROJ_DIR
+    cp $HOME_TEMPLATE "${PROJ_DIR}/p_${i}_home.pug"
+    sed -i "s/utils/..\/..\/utilsl ${PUG}/index.pug"
+    cp $PAGE_TEMPLATE "${PROJ_DIR}/p_${i}_page.pug"
+    sed -i "s/utils/..\/..\/utilsl ${PUG}/index.pug"
 done
 
 
@@ -23,15 +32,15 @@ done
 
 cd ..
 echo "pug output:"
-pug ./ -o ./docs -P
+pug $PUG -o ./docs -P
 
 
-# Option to remove /pages dir, mainly for debugging
+# # Option to remove /pages dir, mainly for debugging
 
-echo "Remove Directory? [y/n]"
-read rm_input
+# echo "Remove Directory: ${PUG} ? [y/n]" && read rm_input
 
-if [ rm_input == "y" ]
-then
-    rm -rf pages
-fi
+# if [ rm_input == "y" ]
+# then
+#     rm -rf $PUG
+#     echo ". . . removed directory"
+# fi
