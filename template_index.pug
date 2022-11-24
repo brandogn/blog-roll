@@ -1,0 +1,25 @@
+include utils
+
+-
+  const title = "OH_MY_$$$"
+  const note = "Welcome!"
+  const navInfo = data.navInfo
+
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel="stylesheet", href= MAIN_CSS_DIR)
+    link(rel="stylesheet", href= HOME_CSS_DIR)
+    title= title
+  body
+    +nav(navInfo)
+    .main
+      .home.push
+        .title= title
+      .foot
+        a(href='/about.html')  [What is this website?]
+        .push
+        p= "Note: " + note

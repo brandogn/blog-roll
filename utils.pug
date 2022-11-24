@@ -5,29 +5,27 @@
   const MAIN_CSS_DIR = ROOT + "assets/styles/main.css",
     HOME_CSS_DIR = ROOT + "assets/styles/home.css",
     INDEX_DIR = ROOT + "index.html";
-  const contents = {
-    I: ,
-    II:,
-    III:,
-  }
 
   
   
 //- Utils for document page:
 
-mixin nav()
+//- takes in object with key as project name, values as array of link objects
+mixin nav(navInfo)
   .top-bar
     .navbar
       .menu
         a(href='#home') H
       .push
-      for subLinks, i in ["I", "II", "III"]
+      for links, key in navInfo
         .dropdown
           button.dropbtn
-            a(href='#')= i
+            a(href='#')= key
           .dropdown-content
-            for link in subLinks 
-              a(href= link.url)= link.name
+            for link in links
+              a(href="#")= link
+            //- for link in subLinks 
+            //-   a(href= link.url)= link.name
 
 mixin docTitle(title)
   .title
@@ -45,7 +43,7 @@ mixin section(title, content)
 
 //- Template for home page:
 
-mixin homePage(title, links)
+mixin homePage(navInfo, title, links)
   doctype html
   html(lang='en')
     head
@@ -56,16 +54,16 @@ mixin homePage(title, links)
       link(rel="stylesheet", href= HOME_CSS_DIR)
       title= title
     body
-      +nav()
+      +nav(navInfo)
       .main
 
         .home.push
           .title= title
           h2 
             a(href= INDEX_DIR) ..
-          each link, name in links
+          each url, name in links
             h2 
-              a(href= link)= name
+              a(href= url)= name
         .foot
           a(href='./about.html')  [What is this website?]
           .push
@@ -73,7 +71,7 @@ mixin homePage(title, links)
 
 //- Template for document page:
 
-mixin docPage(title, content, home, note)
+mixin docPage(navInfo, title, content, home, note)
   doctype html
   html(lang='en')
     head
@@ -83,7 +81,7 @@ mixin docPage(title, content, home, note)
       link(rel="stylesheet", href= MAIN_CSS_DIR)
       title= title
     body
-      +nav()
+      +nav(navInfo)
       .main
         .navbar-pad
         a(name="top")
@@ -95,7 +93,7 @@ mixin docPage(title, content, home, note)
         .foot
           a(href='#top') [back to top ↑]
           | ⠀|⠀
-          a(href= home.link)= `[Proj ${home.name} Home]`
+          a(href= home.url)= `[Proj ${home.name} Home]`
           .push
           if note 
             p= "Note: " + note
