@@ -1,0 +1,38 @@
+@font-face {
+  font-family: Roboto-Mono;
+  src: url("./font/RobotoMono-VariableFont_wght.ttf");
+}
+
+@font-face {
+  font-family: Roboto-Mono-Italic;
+  src: url("./font/RobotoMono-Italic-VariableFont_wght.ttf");
+}
+
+:root {
+  /* Font */
+  font-family: monospace;
+  --font-main: monospace;
+  --font-text: Roboto-Mono, monospace;
+  --font-title: Helvetica, Arial, sans-serif;
+  /* Font Size */
+  --XL-font: 50px;
+  --L-font: 32px;
+  --M-font: 25px;
+  --N-font: 18px;
+  --S-font: 15px;
+  --XS-font: 12px;
+  /* Doc Settings */
+  --icon-size: 50px;
+  --pad: 15px;
+  --margin: 50px;
+}
+
+@media screen and (max-width: 650px) {
+  :root {
+    /* Font Size */
+    --XL-font: 45px;
+    --L-font: 32px;
+    --M-font: 20px;
+    --N-font: 18px;
+  }
+}

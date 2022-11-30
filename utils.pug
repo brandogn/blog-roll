@@ -2,8 +2,8 @@
 
 -
   const ROOT = "/"
-  const MAIN_CSS_DIR = ROOT + "assets/styles/main.css",
-    HOME_CSS_DIR = ROOT + "assets/styles/home.css",
+  const MAIN_CSS_DIR = ROOT + "styles/main.css",
+    HOME_CSS_DIR = ROOT + "styles/home.css",
     INDEX_DIR = ROOT + "index.html";
 
   
@@ -87,8 +87,9 @@ mixin docPage(navInfo, title, content, home, note)
         a(name="top")
         .content
           +docTitle(title)
-          for paragraphs, subtitle in content
-            +section(subtitle, paragraphs)
+          .text-wrapper
+            for paragraphs, subtitle in content
+              +section(subtitle, paragraphs)
         .push
         .foot
           a(href='#top') [back to top ↑]

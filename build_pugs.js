@@ -9,7 +9,11 @@ const homeTemplate = pug.compileFile("template_home.pug");
 const content = require("./content.json");
 const OUT = path.join(__dirname, "docs");
 
-console.log("creating files in: " + OUT);
+///
+///
+///
+
+console.log();
 
 function dirStructure() {
   let buffer = {};
@@ -23,7 +27,6 @@ function dirStructure() {
 }
 
 const globalNav = dirStructure();
-console.log(globalNav);
 
 function createHome(title, links) {
   return homeTemplate({
@@ -46,10 +49,6 @@ function createPage(title, content, homeLink) {
   });
 }
 
-///
-///
-///
-
 function main() {
   // Create index:
   const indexHTML = pug.renderFile("template_index.pug", {
@@ -61,15 +60,19 @@ function main() {
   for (const proj in content) {
     // Setup project directory
     const projDir = path.join(OUT, proj);
+    const imgDir = path.join(__dirname, "img", proj);
+
+    // Reset directory
     fs.rmSync(projDir, { recursive: true, force: true }, (err) => {});
-    fs.mkdirSync(projDir);
+    fs.cpSync(imgDir, projDir, { recursive: true });
+
+    // fs.mkdirSync(projDir);
 
     // Set up home.html page
     const homeHtml = createHome(`Project ${proj}`, globalNav[proj]);
     fs.writeFileSync(path.join(projDir, "home.html"), homeHtml);
 
     // Set up subpages iteratively
-    console.log(content[proj]);
     for (const page in content[proj]) {
       const pageHtml = createPage(page, content[proj][page], {
         name: proj,
@@ -79,11 +82,8 @@ function main() {
     }
   }
 }
+
+console.log("Creating files in: " + OUT, "\nCreating pages: \n", globalNav);
 main();
 
-// DEBUG:
 
-function debug() {}
-debug();
-
-// pug ./ -wo ./docs -P
