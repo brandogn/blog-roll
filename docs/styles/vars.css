@@ -8,15 +8,21 @@
   src: url("./font/RobotoMono-Italic-VariableFont_wght.ttf");
 }
 
+@font-face {
+  font-family: OCR-A;
+  src: url("./font/ocr-a\ bt.ttf");
+}
+
 :root {
   /* Font */
-  font-family: monospace;
-  --font-main: monospace;
+  font-family: "OCR-A", monospace;
+  --font-main: "OCR-A", monospace;
   --font-text: Roboto-Mono, monospace;
-  --font-title: Helvetica, Arial, sans-serif;
+  /* --font-title: Helvetica, Arial, sans-serif; */
+  --font-title: "OCR-A", Helvetica, Arial, sans-serif;
   /* Font Size */
-  --XL-font: 50px;
-  --L-font: 32px;
+  --XL-font: 60px;
+  --L-font: 30px;
   --M-font: 25px;
   --N-font: 18px;
   --S-font: 15px;

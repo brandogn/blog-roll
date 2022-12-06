@@ -57,15 +57,19 @@
 }
 
 .dropdown-content {
-  font-size: 12px;
+  font-size: 16px;
   display: none;
   position: absolute;
   right: 0;
   background-color: #f9f9f9;
-  min-width: 120px;
+  min-width: 160px;
   outline: solid 1px;
-  box-shadow: 0 0 16px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 16px 0px rgba(0, 0, 0, 0.15);
   z-index: 1;
+}
+
+.dropdown-content :nth-child(even) {
+  background-color: #f0f0f0;
 }
 
 /* Links inside the dropdown */

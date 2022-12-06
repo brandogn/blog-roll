@@ -10,10 +10,6 @@ const content = require("./content.json");
 const OUT = path.join(__dirname, "docs");
 
 ///
-///
-///
-
-console.log();
 
 function dirStructure() {
   let buffer = {};
@@ -63,10 +59,8 @@ function main() {
     const imgDir = path.join(__dirname, "img", proj);
 
     // Reset directory
-    fs.rmSync(projDir, { recursive: true, force: true }, (err) => {});
+    fs.rmSync(projDir, { recursive: true, force: true });
     fs.cpSync(imgDir, projDir, { recursive: true });
-
-    // fs.mkdirSync(projDir);
 
     // Set up home.html page
     const homeHtml = createHome(`Project ${proj}`, globalNav[proj]);

@@ -1,6 +1,6 @@
 {
   "I": {
-    "Discussions": {
+    "Brain Storming": {
       "Discussion II": [
         "The concept of creating a machine with a soul drags many questions about the future dynamics between robots and humans. Three authors discuss this idea, forming distinct perspectives based on the insight and stories they present. Casey Newton’s “Speak, Memory,” by narrating the beautiful life and tragic death of , sheds positive light on the vision of AI-powered replicas used to commemorate the deceased. It narrates a real-world story of Eugenia Kuyda whose mission is to recreate her deceased, dear friend, Roman Mazurenko. Trained on past text messages, the model gave the opportunity to ask questions or tell things to the Roman replica through text; many found it therapeutic while some thought it was uncanny. Newton uses Kuyda’s story to open up questions about the ethical implications of such memorials; Is this truly a just way to commemorate the deceased? What if the model captures an unrepresentative point of the person’s life or reveals sides that were never intended to be revealed? Newton’s article also incorporates emotional aspects of the story—the honesty in conversing with the dead, the ease and peace that comes from the familiarity and resemblance in the bot, Kuyda’s warm memories that paint a sentimental image of Roman. These aspects take away some of the uncanniness in the idea of talking to the deceased.",
         "On the other hand, Miles Klee, in his article “Ever After,” explores humanity’s various attempts at achieving immortality, illustrating a more negative side of the efforts to replicate our souls into machines. He mentions the capitalistic aspects of immortality—the numerous investments and efforts to reach the point of singularity—raising many questions about the ethics of “cheating death.” Klee explores such questions through fiction, referring to the idea of zombies sustaining themselves through parasitic means, or a corrupt society that exploits clones to sustain the immortal lifestyles of an oligarchy. In doing so, Klee highlights the shortcomings and logistical nightmares of immortality such as the unbound requirement of resources to sustain such a lifestyle. Such insights differ from Newton’s article, in which a speaker mentions that such bots should be a way of “keeping the memory alive” and not “a way to keep a dead person alive.” Rather, Klee focuses more on the morally-questionable implications of prolonging a person’s life.",
@@ -51,6 +51,17 @@
       ]
     }
   },
-  "II": {},
-  "III": {}
+  "II": {
+    "Slide Decks": {},
+    "Library Exercises": {},
+    "Research Clusters Discussions": {},
+    "Brainstorming": {}
+  },
+  "III": {
+    "Final Essay": {},
+    "Visual Mapping": {},
+    "Reverse Outline": {},
+    "Question Mapping": {},
+    "Brainstorming": {}
+  }
 }
