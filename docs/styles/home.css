@@ -26,7 +26,8 @@ img {
   width: 200px;
 }
 
-.top-bar {
+.top-bar,
+.menu,
+.dropdown .dropbtn {
   outline: unset;
-
 }

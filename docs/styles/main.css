@@ -85,16 +85,15 @@ body {
 
 .text-wrapper {
   margin: var(--margin) auto;
-  text-align: justify;
+  /* text-align: justify; */
   width: min(750px, 100%);
 }
 
-.text-wrapper * {
+.text-wrapper > * {
   margin: var(--pad) var(--pad);
 }
-
-.text-wrapper h2 {
-  margin-top: calc(var(--pad) * 4);
+table > tbody > tr > td {
+  padding: var(--pad);
 }
 
 h2 {
@@ -114,9 +113,9 @@ p {
 /* Assets */
 
 .text-wrapper iframe {
-  display: block;
   margin: 0 auto;
-  max-width: 90%;
+  display: block;
+  width: 100%;
 }
 
 .text-wrapper img,
@@ -208,3 +207,5 @@ button {
   color: inherit;
   cursor: pointer;
 }
+
+/* bruh */
