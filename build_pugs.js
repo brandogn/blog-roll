@@ -51,6 +51,11 @@ function main() {
     data: { navInfo: globalNav },
   });
   fs.writeFileSync("./docs/index.html", indexHTML);
+  const aboutHTML = pug.renderFile("template_about.pug", {
+    data: { navInfo: globalNav },
+  });
+  fs.writeFileSync("./docs/about.html", aboutHTML);
+
 
   // Create File Structure:
   for (const proj in content) {

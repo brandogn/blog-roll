@@ -9,9 +9,14 @@
   justify-content: center;
 }
 
-.home * {
+.home > * {
   margin: 10px;
   text-align: center;
+}
+
+.about {
+  margin: auto;
+  width: min(700px, 100%);
 }
 
 .spacer {
