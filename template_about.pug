@@ -1,0 +1,38 @@
+include utils
+
+-
+  const title = "About"
+  const navInfo = data.navInfo
+
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    link(rel="stylesheet", href= MAIN_CSS_DIR)
+    link(rel="stylesheet", href= HOME_CSS_DIR)
+    title= title
+  body
+    +nav(navInfo)
+    .main
+      .about.home.push
+        div About: This website is a place for all of my work from Ryan Sloan's #[a(href="https://writing.berkeley.edu/") research class]. Here are some short summaries of the projects:
+
+        br
+
+        h2 #[a(href="/I/home.html" ) Project 1]          
+        div asdf
+
+        br
+
+        h2 #[a(href="/II/home.html" ) Project 2]          
+        div asdf
+
+        br
+
+        h2 #[a(href="/III/home.html" ) Project 3]          
+        div asdf
+      .foot
+        a(href='/index.html') [back]
+        .push
