@@ -113,9 +113,9 @@ p {
 /* Assets */
 
 .text-wrapper iframe {
-  margin: 0 auto;
-  display: block;
   width: 100%;
+  display: block;
+  margin: auto;
 }
 
 .text-wrapper img,

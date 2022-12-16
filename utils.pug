@@ -28,10 +28,11 @@ mixin nav(navInfo)
             //-   a(href= link.url)= link.name
 
 mixin docTitle(title)
-  .title
-    .title-wrapper
-      .title-glow
-      span= title
+  .title= title
+  //- .title
+  //-   .title-wrapper
+  //-     .title-glow
+  //-     span= title
 
 mixin section(title, content)
   h2= title
